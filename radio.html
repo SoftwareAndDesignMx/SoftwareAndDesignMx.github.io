@@ -1,97 +1,160 @@
-<div id="app-cover">
-        <div id="bg-artwork"></div>
-        <div id="bg-layer"></div>
-        <div id="player">
-            <div id="player-track">
-                <div id="album-name"></div>
-                <div id="track-name"></div>
-                <div id="track-time">
-                    <div id="current-time"></div>
-                    <div id="track-length"></div>
-                </div>
-                <div id="s-area">
-                    <div id="ins-time"></div>
-                    <div id="s-hover"></div>
-                    <div id="seek-bar"></div>
-                </div>
-            </div>
-            <div id="player-content">
-                <div id="album-art">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="active" id="_1">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_2.jpg" id="_2">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_3.jpg" id="_3">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_4.jpg" id="_4">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_5.jpg" id="_5">
+<script>
+   	
+	"use strict";
+	 let rotation = 0;
+    function rotateImg() {
+      rotation += 5; // add 90 degrees, you can change this as you want
+      if (rotation === 360) { 
+        // 360 means rotate back to 0
+        rotation = 0;
+      }
+      document.querySelector("#album-art").style.transform = `rotate(${rotation}deg)`;
+	  
+	  
+	  
+    }
+	let im;
+	 function playImg(){
+		 im=setInterval(() => {
+        rotateImg();
+      }, 50);
+	 }
+	 function pauseImg(){
+		 clearInterval(im);
+	 }
+		</script>
+		
+		
+		
+		<audio id="playerm" src="https://s3.radio.co/s2c1cebae5/listen" ></audio>
+
+		
+		
+		
+		
+		<div id="app-cover" style="
+
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 430px;
+    height: 100px;
+    margin: -4px auto;
+">
+        
+       
+        <div id="player" style="
+		 position: relative;
+    height: 100%;
+    z-index: 3;
+		">
+           
+
+            <div id="player-content" style="position: relative;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 30px 80px #656565;
+    border-radius: 15px;
+    z-index: 2;">
+                <div id="album-art" style="position: absolute;
+    top: -40px;
+    width: 115px;
+    height: 115px;
+    margin-left: 40px;
+    
+    box-shadow: 0 0 0 10px #fff;
+    border-radius: 50%;
+    overflow: hidden;">
+                    <img src="https://rock101online.mx/wp-content/uploads/2018/05/Rock101.png" class="active" style=" width: 115px;
+    height: 115px;
+    box-shadow: 0 0 0 4px #fff7f7, 0 30px 50px -15px #afb7c1;"id="_1">
+                    
                     <div id="buffer-box">Buffering ...</div>
                 </div>
-                <div id="player-controls">
-                    <div class="control">
-                        <div class="button" id="play-previous">
-                            <i class="fas fa-backward"></i>
+			
+				
+                <div id="player-controls" style="
+				 width: 250px;
+    height: 100%;
+    margin: 0 5px 0 141px;
+    float: right;
+    overflow: hidden;
+				">
+                    <div class="control" style="
+					 width: 25%;
+    float: left;
+    padding: 12px 0;
+					">
+                        <div class="button"  id="play-previous" style="width: 26px;
+    height: 26px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;">
+                            <i class="fas fa-volume-down" onclick="document.getElementById('playerm').volume-=0.1" style=" 
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;"></i>
                         </div>
                     </div>
-                    <div class="control">
-                        <div class="button" id="play-pause-button">
-                            <i class="fas fa-play"></i>
+                    <div class="control" style="width: 25%;
+    float: left;
+    padding: 12px 0;">
+                        <div class="button" data-flag="1" id="play-pause-button" style="
+						 width: 26px;
+    height: 26px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer; 
+						">
+                            <i class="fas fa-play"   onclick="document.getElementById('playerm').play(), playImg()" style="
+    
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;"></i>
                         </div>
                     </div>
-                    <div class="control">
-                        <div class="button" id="play-next">
-                            <i class="fas fa-forward"></i>
+					<div class="control" style="width: 25%;
+    float: left;
+    padding: 12px 0;">
+                        <div class="button" data-flag="1" id="play-pause-button" style="
+						 width: 26px;
+    height: 26px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer; 
+						">
+                            <i class="fas fa-pause"   onclick="document.getElementById('playerm').pause(),pauseImg()" style="
+    
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;"></i>
+                        </div>
+                    </div>
+                    <div class="control" style="
+					width: 25%;
+    float: left;
+    padding: 12px 0;
+					">
+                        <div class="button"  id="play-next" style="
+						width: 26px;
+    height: 26px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+						">
+                            <i class="fas fa-volume-up" onclick="document.getElementById('playerm').volume+=0.1" style="
+    
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+		
     </div>
-<!-- Tracks used in this music/audio player application are free to use. I downloaded them from Soundcloud and NCS websites. I am not the owner of these tracks. -->
-
-    <div id="app-cover">
-        <div id="bg-artwork"></div>
-        <div id="bg-layer"></div>
-        <div id="player">
-            <div id="player-track">
-                <div id="album-name"></div>
-                <div id="track-name"></div>
-                <div id="track-time">
-                    <div id="current-time"></div>
-                    <div id="track-length"></div>
-                </div>
-                <div id="s-area">
-                    <div id="ins-time"></div>
-                    <div id="s-hover"></div>
-                    <div id="seek-bar"></div>
-                </div>
-            </div>
-            <div id="player-content">
-                <div id="album-art">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="active" id="_1">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_2.jpg" id="_2">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_3.jpg" id="_3">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_4.jpg" id="_4">
-                    <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_5.jpg" id="_5">
-                    <div id="buffer-box">Buffering ...</div>
-                </div>
-                <div id="player-controls">
-                    <div class="control">
-                        <div class="button" id="play-previous">
-                            <i class="fas fa-backward"></i>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="button" id="play-pause-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="button" id="play-next">
-                            <i class="fas fa-forward"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<!-- <a href="https://www.youtube.com/channel/UC7hSS_eujjZOEQrjsda76gA/videos" target="_blank" id="ytd-url">My YouTube Channel</a> -->
